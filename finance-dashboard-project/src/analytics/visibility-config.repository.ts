@@ -16,7 +16,7 @@ export class VisibilityConfigRepository {
     });
   }
 
-  async findByFieldName(fieldName: string): Promise<VisibilityConfig> {
+  async findByFieldName(fieldName: string): Promise<VisibilityConfig | null> {
     return await this.visibilityConfigRepository.findOne({
       where: { field_name: fieldName },
     });

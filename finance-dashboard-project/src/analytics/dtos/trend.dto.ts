@@ -7,7 +7,7 @@ export class TrendDto {
 
 export class TrendResponseDto {
   data: TrendDto[];
-  start_date: Date;
-  end_date: Date;
+  start_date?: Date;
+  end_date?: Date;
   currency: string;
 }

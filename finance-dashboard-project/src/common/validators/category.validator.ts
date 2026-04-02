@@ -1,7 +1,7 @@
 import { registerDecorator, ValidationOptions, ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator';
 import { Injectable } from '@nestjs/common';
 import { getRepository } from 'typeorm';
-import { Category } from '../../categories/entities/category.entity';
+import { Category } from '../../database/entities/category.entity';
 
 @ValidatorConstraint({ name: 'isCategoryExists', async: true })
 @Injectable()

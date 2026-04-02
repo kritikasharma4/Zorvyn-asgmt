@@ -1,12 +1,12 @@
 import { Controller, Get, Post, Put, Delete, Param, Body, UseGuards, ParseIntPipe, HttpCode, HttpStatus, Req } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth, ApiResponse } from '@nestjs/swagger';
+import type { AuthenticatedRequest } from '../common/interfaces';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
 import { RoleGuard } from '../common/guards/role.guard';
 import { Roles } from '../common/decorators/roles.decorator';
-import { AuthenticatedRequest } from '../common/interfaces';
 
 @ApiTags('users')
 @Controller('users')

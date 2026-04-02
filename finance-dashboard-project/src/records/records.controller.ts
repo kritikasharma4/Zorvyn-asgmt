@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Put, Delete, Param, Body, UseGuards, ParseIntPipe, HttpCode, HttpStatus, Req, Query } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth, ApiResponse } from '@nestjs/swagger';
+import type { AuthenticatedRequest } from '../common/interfaces';
 import { RecordsService } from './records.service';
 import { CreateRecordDto } from './dtos/create-record.dto';
 import { UpdateRecordDto } from './dtos/update-record.dto';
@@ -7,7 +8,6 @@ import { RecordFilterDto } from './dtos/record-filter.dto';
 import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
 import { RoleGuard } from '../common/guards/role.guard';
 import { Roles } from '../common/decorators/roles.decorator';
-import { AuthenticatedRequest } from '../common/interfaces';
 
 @ApiTags('records')
 @Controller('records')

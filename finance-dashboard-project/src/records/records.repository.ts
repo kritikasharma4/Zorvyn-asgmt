@@ -21,13 +21,13 @@ export class RecordsRepository {
     return await this.recordRepository.save(record);
   }
 
-  async findByIdAndUser(id: number, userId: number): Promise<Record> {
+  async findByIdAndUser(id: number, userId: number): Promise<Record | null> {
     return await this.recordRepository.findOne({
       where: { id, user_id: userId, is_deleted: false },
     });
   }
 
-  async findById(id: number): Promise<Record> {
+  async findById(id: number): Promise<Record | null> {
     return await this.recordRepository.findOne({
       where: { id, is_deleted: false },
     });
@@ -89,7 +89,7 @@ export class RecordsRepository {
     return await query.getManyAndCount();
   }
 
-  async update(id: number, updates: Partial<Record>): Promise<Record> {
+  async update(id: number, updates: Partial<Record>): Promise<Record | null> {
     await this.recordRepository.update(id, updates);
     return await this.findById(id);
   }

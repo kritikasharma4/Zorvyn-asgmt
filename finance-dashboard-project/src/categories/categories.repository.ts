@@ -22,13 +22,13 @@ export class CategoriesRepository {
     });
   }
 
-  async findById(id: number): Promise<Category> {
+  async findById(id: number): Promise<Category | null> {
     return await this.categoryRepository.findOne({
       where: { id },
     });
   }
 
-  async findByName(name: string): Promise<Category> {
+  async findByName(name: string): Promise<Category | null> {
     return await this.categoryRepository.findOne({
       where: { name },
     });

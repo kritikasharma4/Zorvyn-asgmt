@@ -1,7 +1,7 @@
 import { registerDecorator, ValidationOptions, ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator';
 import { Injectable } from '@nestjs/common';
 import { getRepository } from 'typeorm';
-import { SystemConfig } from '../../config/entities/system-config.entity';
+import { SystemConfig } from '../../database/entities/system-config.entity';
 
 const VALID_CURRENCIES = ['USD', 'EUR', 'INR', 'GBP', 'JPY', 'AUD', 'CAD', 'CHF', 'CNY', 'SEK'];
 

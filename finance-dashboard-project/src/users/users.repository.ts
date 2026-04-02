@@ -34,7 +34,7 @@ export class UsersRepository {
     return await query.orderBy('user.created_at', 'DESC').getMany();
   }
 
-  async findById(id: number, includeDeleted: boolean = false): Promise<User> {
+  async findById(id: number, includeDeleted: boolean = false): Promise<User | null> {
     const query = this.userRepository.createQueryBuilder('user').where('user.id = :id', { id });
 
     if (!includeDeleted) {
@@ -44,7 +44,7 @@ export class UsersRepository {
     return await query.getOne();
   }
 
-  async findByEmail(email: string, includeDeleted: boolean = false): Promise<User> {
+  async findByEmail(email: string, includeDeleted: boolean = false): Promise<User | null> {
     const query = this.userRepository.createQueryBuilder('user').where('user.email = :email', { email });
 
     if (!includeDeleted) {
@@ -54,7 +54,7 @@ export class UsersRepository {
     return await query.getOne();
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
+  async update(id: number, updateUserDto: UpdateUserDto): Promise<User | null> {
     await this.userRepository.update(id, updateUserDto);
     return await this.findById(id);
   }

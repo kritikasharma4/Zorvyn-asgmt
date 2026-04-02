@@ -25,20 +25,20 @@ export class DuplicateEmailException extends ConflictException {
 }
 
 export class InvalidCredentialsException extends UnauthorizedException {
-  constructor() {
-    super('Invalid email or password');
+  constructor(message: string = 'Invalid email or password') {
+    super(message);
   }
 }
 
 export class UserLimitExceededException extends BadRequestException {
-  constructor(maxUsers: number) {
-    super(`Maximum users limit (${maxUsers}) has been reached`);
+  constructor(message: string) {
+    super(message);
   }
 }
 
 export class CurrencyMismatchException extends BadRequestException {
-  constructor(recordCurrency: string, systemCurrency: string) {
-    super(`Record currency ${recordCurrency} does not match system currency ${systemCurrency}`);
+  constructor(message: string) {
+    super(message);
   }
 }
 
