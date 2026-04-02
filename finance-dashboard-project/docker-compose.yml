@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: finance_dashboard_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: finance_db
+      MYSQL_USER: finance_user
+      MYSQL_PASSWORD: finance_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    networks:
+      - finance_network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: finance_dashboard_app
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: finance_user
+      DB_PASSWORD: finance_password
+      DB_NAME: finance_db
+      JWT_SECRET: your-super-secret-jwt-key-change-in-production
+      JWT_EXPIRY: 24h
+      PORT: 3000
+      NODE_ENV: production
+    ports:
+      - "3000:3000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - finance_network
+
+volumes:
+  mysql_data:
+
+networks:
+  finance_network:
+    driver: bridge
