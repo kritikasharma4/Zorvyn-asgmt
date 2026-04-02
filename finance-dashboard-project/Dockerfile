@@ -32,6 +32,10 @@ RUN yarn install --frozen-lockfile --production
 # Copy built application from builder
 COPY --from=builder /app/dist ./dist
 
+# Copy start script
+COPY start.sh ./
+RUN chmod +x ./start.sh
+
 # Expose port
 EXPOSE 3000
 
@@ -41,4 +45,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 
 # Use dumb-init to run node process
 ENTRYPOINT ["dumb-init", "--"]
-CMD ["node", "dist/main.js"]
+CMD ["./start.sh"]
